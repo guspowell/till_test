@@ -1,0 +1,37 @@
+1. MVP
+
+As a till user
+I want to input an item and a quantity
+So the buyer can clearly see how many of each item has been bought
+
+As a till user
+I want the till to calculate the total value
+So I know the value of all items purchased
+
+As a till user
+I want to the till to calculate the taxable amount
+So I know how much to add on top of the total
+
+As a till user
+I want the till to calculate the total price including tax
+So I know exactly how much to charge the buyer
+
+
+2.
+
+As a till user
+I want the till to produce the date
+So the buyer knows exactly when they purchased their goods
+
+As a till user
+I want the till to produce the name, location and phone number
+So that the buyer knows the details of the coffee shop
+
+.....
+
+
+OBJECTS:
+user
+till
+order
+receipt

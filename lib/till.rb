@@ -5,8 +5,10 @@ class Till
 
   attr_accessor :menu, :orders
 
+
   def initialize
     @orders = []
+    @tax = 0.0864
   end
 
   def load_information(json)
@@ -32,15 +34,24 @@ class Till
   end
 
   def calc_subtotal(table_number)
+    add_prices(table_number)
     table = @orders.select { |table| table.table_number == table_number}  # [{:item=>"Cafe Latte", :quantity=>2, :price: 9.5}, {:item=>"Flat White", :quantity=>1, :price => 4.75}]
-    table_order = table[0]
-    p table_order.inject { |memo, value|  memo + value[:price]}
+    table_order = table[0].all_items
+    table_order.inject(0) { |memo, value|  memo + value[:price] }
   end
 
-  def order_information(order)
-    { subtotal: calc_subtotal,
-      tax: calc_tax,
-      total: calc_total }
+  def calc_tax(table_number)
+    ( calc_subtotal(table_number) * @tax ).round(2)
+  end
+
+  def calc_total(table_number)
+    calc_tax(table_number) + calc_subtotal(table_number)
+  end
+
+  def order_information(table_number)
+    { subtotal: calc_subtotal(table_number),
+      tax: calc_tax(table_number),
+      total: calc_total(table_number) }
   end
 
 

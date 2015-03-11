@@ -35,8 +35,31 @@ describe Till do
       order.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
       till.register_order(order)
-      till.add_prices
-      expect(till.calc_subtotal).to eq 14.75
+      expect(till.calc_subtotal(2)).to eq 14.25
+    end
+
+    it 'should be able to calculate tax value' do
+      order.add_item('Cafe Latte',2)
+      order.add_item('Flat White', 1)
+      till.load_information('./hipstercoffee.json')
+      till.register_order(order)
+      expect(till.calc_tax(2)).to eq 1.23
+    end
+
+    it 'should be able to calculate total' do
+      order.add_item('Cafe Latte',2)
+      order.add_item('Flat White', 1)
+      till.load_information('./hipstercoffee.json')
+      till.register_order(order)
+      expect(till.calc_total(2)).to eq 15.48
+    end
+
+    it 'should be able to give all order info in a hash' do
+      order.add_item('Cafe Latte',2)
+      order.add_item('Flat White', 1)
+      till.load_information('./hipstercoffee.json')
+      till.register_order(order)
+      expect(till.order_information(2)).to eq ({ subtotal: 14.25, tax: 1.23, total: 15.48 })
     end
 
 

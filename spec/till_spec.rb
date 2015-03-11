@@ -30,14 +30,14 @@ describe Till do
       expect(till.orders[0].all_items).to eq [{:item=>"Cafe Latte", :quantity=>2, :price=>9.5}, {:item=>"Flat White", :quantity=>1, :price=>4.75}]
     end
 
-    # it 'should be able to calculate a subtotal give the order' do
-    #   order.add_item('Cafe Latte',2)
-    #   order.add_item('Flat White', 1)
-    #   till.load_information('./hipstercoffee.json')
-    #   till.register_order(order)
-    #   till.add_prices
-    #   expect(till.calc_subtotal).
-    # end
+    it 'should be able to calculate a subtotal give the order' do
+      order.add_item('Cafe Latte',2)
+      order.add_item('Flat White', 1)
+      till.load_information('./hipstercoffee.json')
+      till.register_order(order)
+      till.add_prices
+      expect(till.calc_subtotal).to eq 14.75
+    end
 
 
 end

@@ -31,9 +31,11 @@ class Till
     end
   end
 
-  # def calc subtotal(table_number)
-  #
-  # end
+  def calc_subtotal(table_number)
+    table = @orders.select { |table| table.table_number == table_number}  # [{:item=>"Cafe Latte", :quantity=>2, :price: 9.5}, {:item=>"Flat White", :quantity=>1, :price => 4.75}]
+    table_order = table[0]
+    p table_order.inject { |memo, value|  memo + value[:price]}
+  end
 
   def order_information(order)
     { subtotal: calc_subtotal,

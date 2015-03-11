@@ -4,7 +4,7 @@ require 'order.rb'
 describe Till do
 
   let(:till) {Till.new}
-  let(:order) {Order.new(2)}
+  let(:order1) {Order.new(2)}
 
     it 'should be able to load a json' do
       expect( till.load_information('./hipstercoffee.json').class).to eq Hash
@@ -22,43 +22,43 @@ describe Till do
     # end
 
     it 'should be able to add prices to the order hash' do
-      order.add_item('Cafe Latte',2)
-      order.add_item('Flat White', 1)
+      order1.add_item('Cafe Latte',2)
+      order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
-      till.register_order(order)
+      till.register_order(order1)
       till.add_prices(2)
       expect(till.orders[0].all_items).to eq [{:item=>"Cafe Latte", :quantity=>2, :price=>9.5}, {:item=>"Flat White", :quantity=>1, :price=>4.75}]
     end
 
     it 'should be able to calculate a subtotal give the order' do
-      order.add_item('Cafe Latte',2)
-      order.add_item('Flat White', 1)
+      order1.add_item('Cafe Latte',2)
+      order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
-      till.register_order(order)
+      till.register_order(order1)
       expect(till.calc_subtotal(2)).to eq 14.25
     end
 
     it 'should be able to calculate tax value' do
-      order.add_item('Cafe Latte',2)
-      order.add_item('Flat White', 1)
+      order1.add_item('Cafe Latte',2)
+      order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
-      till.register_order(order)
+      till.register_order(order1)
       expect(till.calc_tax(2)).to eq 1.23
     end
 
     it 'should be able to calculate total' do
-      order.add_item('Cafe Latte',2)
-      order.add_item('Flat White', 1)
+      order1.add_item('Cafe Latte',2)
+      order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
-      till.register_order(order)
+      till.register_order(order1)
       expect(till.calc_total(2)).to eq 15.48
     end
 
     it 'should be able to give all order info in a hash' do
-      order.add_item('Cafe Latte',2)
-      order.add_item('Flat White', 1)
+      order1.add_item('Cafe Latte',2)
+      order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
-      till.register_order(order)
+      till.register_order(order1)
       expect(till.order_information(2)).to eq ({ subtotal: 14.25, tax: 1.23, total: 15.48 })
     end
 

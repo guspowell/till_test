@@ -4,29 +4,25 @@ require 'order.rb'
 describe Till do
 
   let(:till) {Till.new}
-  let(:order1) {Order.new(2)}
+  let(:order1) {Order.new(1)}
+  let(:order2) {Order.new(2)}
 
     it 'should be able to load a json' do
       expect( till.load_information('./hipstercoffee.json').class).to eq Hash
     end
 
     it 'should be able to register an order' do
-      order.add_item('Cafe Latte', 2)
-      till.register_order(order)
-      expect(till.orders[0].table_number).to eq 2
+      order1.add_item('Cafe Latte', 2)
+      till.register_order(order1)
+      expect(till.orders[0].table_number).to eq 1
     end
-
-    # it 'should be able to calculate prices of the items' do
-    #   order.add_item('Cafe Latte', 2)
-    #   expect(till.calc_prices(order)).to eq [{ item: item, quantity: quantity, price: 4.75 }]
-    # end
 
     it 'should be able to add prices to the order hash' do
       order1.add_item('Cafe Latte',2)
       order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
       till.register_order(order1)
-      till.add_prices(2)
+      till.add_prices(1)
       expect(till.orders[0].all_items).to eq [{:item=>"Cafe Latte", :quantity=>2, :price=>9.5}, {:item=>"Flat White", :quantity=>1, :price=>4.75}]
     end
 
@@ -35,7 +31,7 @@ describe Till do
       order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
       till.register_order(order1)
-      expect(till.calc_subtotal(2)).to eq 14.25
+      expect(till.calc_subtotal(1)).to eq 14.25
     end
 
     it 'should be able to calculate tax value' do
@@ -43,7 +39,7 @@ describe Till do
       order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
       till.register_order(order1)
-      expect(till.calc_tax(2)).to eq 1.23
+      expect(till.calc_tax(1)).to eq 1.23
     end
 
     it 'should be able to calculate total' do
@@ -51,15 +47,18 @@ describe Till do
       order1.add_item('Flat White', 1)
       till.load_information('./hipstercoffee.json')
       till.register_order(order1)
-      expect(till.calc_total(2)).to eq 15.48
+      expect(till.calc_total(1)).to eq 15.48
     end
 
     it 'should be able to give all order info in a hash' do
       order1.add_item('Cafe Latte',2)
       order1.add_item('Flat White', 1)
+      order2.add_item('Cafe Latte',2)
       till.load_information('./hipstercoffee.json')
       till.register_order(order1)
-      expect(till.order_information(2)).to eq ({ subtotal: 14.25, tax: 1.23, total: 15.48 })
+      till.register_order(order2)
+      expect(till.order_information(1)).to eq ({ subtotal: 14.25, tax: 1.23, total: 15.48 })
+      expect(till.order_information(2)).to eq ({ subtotal: 9.5, tax: 0.82, total: 10.32 })
     end
 
 

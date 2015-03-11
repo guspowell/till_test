@@ -13,3 +13,8 @@ Feature: Using the till
     Given I am a user with a till
     When I load the json file into the till
     Then the till should know the shop name, address, phone number
+
+  Scenario: calculating total
+    Given I am a user with a till
+    Given I have inputed the order
+    Then the till should be able to calculate a total

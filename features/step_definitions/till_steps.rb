@@ -11,11 +11,20 @@ Then(/^I should see the item and quantity$/) do
 end
 
 When(/^I load the json file into the till$/) do
-  @till.load(file)
+  @till.load_information('./hipstercoffee.json')
 end
 
 Then(/^the till should know the shop name, address, phone number$/) do
-  expect(@till.shop_name).to eq("The Coffee Connection")
+  expect(@till.name).to eq("The Coffee Connection")
   expect(@till.address).to eq("123 Lakeside Way")
   expect(@till.telephone).to eq("16503600708")
+end
+
+Given(/^I have inputed the order$/) do
+  @till.add_item('cafe latte', 2)
+  @till.add_item('Flat White', 1)
+end
+
+Then(/^the till should be able to calculate a total$/) do
+  expect(@till.value).to eq 9.5
 end

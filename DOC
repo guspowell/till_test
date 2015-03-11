@@ -1,15 +1,15 @@
 1. MVP
 
 As a till user
-I want to input an item and a quantity
+I want to input an order
 So the buyer can clearly see how many of each item has been bought
 
 As a till user
-I want the till to calculate the total value
+I want the till to calculate the total value of the order
 So I know the value of all items purchased
 
 As a till user
-I want to the till to calculate the taxable amount
+I want to the till to calculate the taxable amount of the order
 So I know how much to add on top of the total
 
 As a till user

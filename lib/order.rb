@@ -1,14 +1,14 @@
 class Order
 
-  attr_accessor :table_number, :all_items
+  attr_accessor :table_number, :table_order
 
   def initialize(table_number)
     @table_number = table_number
-    @all_items = []
+    @table_order = []
   end
 
   def add_item(item, quantity)
-    @all_items << { item: item, quantity: quantity}
+    @table_order << { item: item, quantity: quantity}
   end
 
 end

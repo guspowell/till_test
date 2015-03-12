@@ -10,7 +10,7 @@ describe Order do
   it 'should be able to add an item and a quantity' do
     order = Order.new(2)
     order.add_item('Cafe Latte', 2)
-    expect(order.all_items).to eq([{ item: 'Cafe Latte', quantity: 2 }])
+    expect(order.table_order).to eq([{ item: 'Cafe Latte', quantity: 2 }])
   end
 
 end

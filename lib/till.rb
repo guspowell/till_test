@@ -4,12 +4,15 @@ require './lib/shop.rb'
 
 class Till
 
+  include Discount
+
   attr_accessor :orders
 
   def initialize(shop)
     @orders = []
     @tax = 0.0864
     @shop = shop
+    @muffin_discount = false
   end
 
   def register_order(order)

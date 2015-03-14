@@ -60,5 +60,4 @@ describe Till do
       expect(till.order_information(2)).to eq ({ subtotal: 9.5, tax: 0.82, total: 10.32 })
     end
 
-
 end

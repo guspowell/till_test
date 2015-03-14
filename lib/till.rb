@@ -6,7 +6,7 @@ class Till
 
   include Discount
 
-  attr_accessor :orders
+  attr_accessor :orders, :muffin_discount
 
   def initialize(shop)
     @orders = []

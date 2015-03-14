@@ -1,15 +1,14 @@
 module Discount
 
   def toggle_muffin_discount
-    @muffin_discount == true if @muffin_discount = false
-    @muffin_discount == false if @muffin_discount = true
+    @muffin_discount = !@muffin_discount
   end
 
   def reduce_muffin_prices(discount)
     if @muffin_discount == true
-      @orders.each do |order|
-        order.table_order.each do |k,v|
-          order[:price] = order[:price]*discount if v.include? "muffin"
+      @orders.each do |table|
+        table.table_order.each do |order|
+          order[:price] = order[:price]*(1 - discount) if order[:item].include?("Muffin")
         end
       end
     end

@@ -4,7 +4,7 @@ module Discount
     @muffin_discount = !@muffin_discount
   end
 
-  def reduce_muffin_price(discount_amount)
+  def reduce_muffin_prices(discount_amount)
     if @muffin_discount == true
       @orders.each do |table|
         table.table_order.each do |order|

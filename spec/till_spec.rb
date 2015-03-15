@@ -49,6 +49,15 @@ describe Till do
       expect(till.calc_total(1)).to eq 15.48
     end
 
+    it 'should have a higher subtotal if muffin discount is off' do
+      shop.load_information('./hipstercoffee.json')
+      order1.add_item('Muffin Of The Day', 2)
+      till.register_order(order1)
+      expect(till.calc_subtotal(1)).to eq 8.19
+      till.toggle_muffin_discount
+      expect(till.calc_subtotal(1)).to eq 9.1
+    end
+
     it 'should be able to give all order info in a hash for multiple tables' do
       order1.add_item('Cafe Latte',2)
       order1.add_item('Flat White', 1)

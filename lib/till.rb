@@ -27,21 +27,22 @@ class Till
         order[:price] = v * order[:quantity] if order[:item] == k
       end
     end
+    take_off_reductions(0.1)
   end
 
   def calc_subtotal(table_number)
     add_prices(table_number)
     table = @orders.select { |table| table.table_number == table_number}  # [{:item=>"Cafe Latte", :quantity=>2, :price: 9.5}, {:item=>"Flat White", :quantity=>1, :price => 4.75}]
     table_order = table[0].table_order
-    table_order.inject(0) { |memo, value|  memo + value[:price] }
+    table_order.inject(0) { |memo, value|  memo + value[:price] }.round(2)
   end
 
   def calc_tax(table_number)
-    ( calc_subtotal(table_number) * @tax ).round(2)
+    (calc_subtotal(table_number) * @tax ).round(2)
   end
 
   def calc_total(table_number)
-    calc_tax(table_number) + calc_subtotal(table_number)
+    total = calc_tax(table_number) + calc_subtotal(table_number)
   end
 
   def order_information(table_number)

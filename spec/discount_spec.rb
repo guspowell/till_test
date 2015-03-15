@@ -26,7 +26,6 @@ describe Discount do
     order1.add_item('Muffin Of The Day', 1)
     till.register_order(order1)
     till.add_prices(1)
-    till.take_off_reductions(0.1)
     expect(till.orders[0].table_order).to eq [{:item=>"Muffin Of The Day", :quantity=>1, :price=>4.095}]
     till.toggle_muffin_discount
     till.add_prices(1)

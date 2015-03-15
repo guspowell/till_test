@@ -19,11 +19,15 @@ class Till
     @orders << order
   end
 
-  def add_prices(table_number)
+  def table_order(table_number)
     table = @orders.select { |table| table.table_number == table_number}  # [{:item=>"Cafe Latte", :quantity=>2}, {:item=>"Flat White", :quantity=>1}]
-    table_order = table[0].table_order
+    @table_order = table[0].table_order
+  end
+
+  def add_prices(table_number)
+    table_order(table_number)
     @shop.menu_prices.each do |k,v|    # {"Cafe Latte"=>4.75, "Flat White"=>4.75, "Cappucino"=>3.85, "Single Espresso"=>2.05, "Double Espresso"=>3.75, "Americano"=>3.75, "Cortado"=>4.55, "Tea"=>3.65, "Choc Mudcake"=>6.4, "Choc Mousse"=>8.2, "Affogato"=>14.8, "Tiramisu"=>11.4, "Blueberry Muffin"=>4.05, "Chocolate Chip Muffin"=>4.05, "Muffin Of The Day"=>4.55}                  # "Cafe Latte"=>4.75
-      table_order.each do |order|      # {:item=>"Cafe Latte", :quantity=>2}
+      @table_order.each do |order|      # {:item=>"Cafe Latte", :quantity=>2}
         order[:price] = v * order[:quantity] if order[:item] == k
       end
     end
@@ -31,9 +35,8 @@ class Till
 
   def calc_subtotal(table_number)
     add_prices(table_number)
-    table = @orders.select { |table| table.table_number == table_number}  # [{:item=>"Cafe Latte", :quantity=>2, :price: 9.5}, {:item=>"Flat White", :quantity=>1, :price => 4.75}]
-    table_order = table[0].table_order
-    table_order.inject(0) { |memo, value|  memo + value[:price] }.round(2)
+    table_order(table_number)
+    @table_order.inject(0) { |memo, value|  memo + value[:price] }.round(2)
   end
 
   def calc_tax(table_number)

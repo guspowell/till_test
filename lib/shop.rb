@@ -1,5 +1,3 @@
-require './lib/till.rb'
-
 class Shop
 
   attr_reader :json_file, :name, :address, :telephone, :menu_prices

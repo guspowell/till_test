@@ -4,11 +4,11 @@ module Discount
     @muffin_discount = !@muffin_discount
   end
 
-  def reduce_muffin_prices(discount)
+  def take_off_reductions(discount_amount)
     if @muffin_discount == true
       @orders.each do |table|
         table.table_order.each do |order|
-          order[:price] = order[:price]*(1 - discount) if order[:item].include?("Muffin")
+          order[:price] = order[:price]*(1 - discount_amount) if order[:item].include?("Muffin")
         end
       end
     end

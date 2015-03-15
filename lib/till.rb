@@ -12,7 +12,7 @@ class Till
     @orders = []
     @tax = 0.0864
     @shop = shop
-    @muffin_discount = false
+    @muffin_discount = true
   end
 
   def register_order(order)

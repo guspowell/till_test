@@ -27,7 +27,7 @@ class Till
         order[:price] = v * order[:quantity] if order[:item] == k
       end
     end
-    take_off_reductions(0.1)
+    reducem_muffin_price(0.1)
   end
 
   def calc_subtotal(table_number)

@@ -18,18 +18,7 @@ describe Discount do
     order1.add_item('Cafe Latte',20)
     shop.load_information('./hipstercoffee.json')
     till.register_order(order1)
-    expect(till.calc_discount(1, 0.1)).to eq 9.5
-  end
-
-  it 'should reduce the muffin price by 10% if muffin discount is on' do
-    shop.load_information('./hipstercoffee.json')
-    order1.add_item('Muffin Of The Day', 1)
-    till.register_order(order1)
-    till.add_prices(1)
-    expect(till.orders[0].table_order).to eq [{:item=>"Muffin Of The Day", :quantity=>1, :price=>4.095}]
-    till.toggle_muffin_discount
-    till.add_prices(1)
-    expect(till.orders[0].table_order).to eq [{:item=>"Muffin Of The Day", :quantity=>1, :price=>4.55}]
+    expect(till.fifty_pound_discount(1, 0.1)).to eq 9.5
   end
 
 end

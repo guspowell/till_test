@@ -1,0 +1,46 @@
+.background {
+  height: 100%;
+  background: url("/images/container.jpg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size:cover;
+  background-position: 0 60%;
+}
+
+.content {
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  width: 80%;
+  text-align: center;
+  margin: 0;
+  font-weight: 100;
+  position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.content h1 {
+  font-size: 3.5em;
+  font-weight: 100;
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+.content input[type="submit"] {
+  font-size: 1.5em;
+  font-weight: 100;
+  text-decoration: none;
+  color: #B2B2B2;
+  border: 1px solid #B2B2B2;
+  border-radius: 5px;
+  background: transparent;
+  padding: 1%;
+  padding-left: 2%; padding-right: 2%;
+}
+
+.content input[type="submit"]:hover {
+  color: white;
+  border: 1px solid white;
+}

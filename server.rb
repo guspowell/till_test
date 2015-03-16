@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require "sinatra/json"
 require './lib/shop.rb'
 
 class TillApp < Sinatra::Base
@@ -7,12 +6,16 @@ class TillApp < Sinatra::Base
     'Hello TillApp!'
   end
 
+  shop = Shop.new
+
   get '/index' do
-    @shop = Shop.new
-    file = File.read('./public/hipstercoffee.json')
-    @json_file = JSON.parse(file)[0]
-    @name = @json_file['shopName']
+    shop.load_information
+    @name = shop.name
     erb :index
+  end
+
+  get '/mainpage' do
+    erb :mainpage
   end
 
   # start the server if ruby file executed directly

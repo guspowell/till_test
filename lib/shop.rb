@@ -10,12 +10,13 @@ class Shop
     @menu_prices
   end
 
-  def load_information(json)
-    file = File.read(json)
+  def load_information
+    file = File.read('hipstercoffee.json')
     @json_file = JSON.parse(file)[0]
   end
 
   def name
+    # 'gus'
     @name = @json_file['shopName']
   end
 

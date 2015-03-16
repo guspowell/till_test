@@ -11,7 +11,7 @@ describe Till do
   let(:order2) {Order.new(2)}
 
     before(:each) do
-      shop.load_information('./hipstercoffee.json')
+      shop.load_information
       order1.add_item('Cafe Latte', 2)
     end
 

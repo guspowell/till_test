@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require "sinatra/json"
 require './lib/shop.rb'
 
 class TillApp < Sinatra::Base
@@ -8,8 +9,9 @@ class TillApp < Sinatra::Base
 
   get '/index' do
     @shop = Shop.new
-    @shop.load_information('./hipstercoffee.json')
-    @shop_name = @shop.name
+    file = File.read('./public/hipstercoffee.json')
+    @json_file = JSON.parse(file)[0]
+    @name = @json_file['shopName']
     erb :index
   end
 

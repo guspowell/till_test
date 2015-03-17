@@ -1,1 +1,42 @@
-hi
+<nav>
+  <ul id="name">
+    <li><a href="#"><%= @name %></a></li>
+  </ul>
+  <ul class="date">
+    <li><a href="#"><%= @time %></a></li>
+  </ul>
+</nav>
+
+<section class="add-item">
+
+  <form id="select_table_number" method="post" action="#">
+    <h3>Table Number</h3>
+    <select name="table_number">
+      <option value="1">1</option>
+    </select>
+    <h3>Item</h3>
+    <select name="item">
+      <option value="Cafe Latte">Cafe Latte</option>
+    </select>
+    <h3>Quantity</h3>
+    <select name="quantity">
+      <option value="1">1</option>
+    </select>
+    <input type="submit">
+  </form>
+
+</section>
+
+<section class ="table-order">
+  <% @order.table_order.each do |order| %>
+    <ul>
+      <% order.each do |item,quantity| %>
+         <li><%= "#{item}....#{quantity}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
+
+<section class="table">
+
+</section>
